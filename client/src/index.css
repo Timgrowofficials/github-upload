@@ -1,0 +1,272 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Mobile App Touch Optimizations */
+@layer utilities {
+  .touch-action-manipulation {
+    touch-action: manipulation;
+  }
+  
+  .tap-highlight-none {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .select-none {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Enhanced Mobile Touch Targets */
+@layer components {
+  .mobile-touch-target {
+    @apply min-h-[44px] min-w-[44px] touch-action-manipulation tap-highlight-none;
+  }
+  
+  .mobile-card {
+    @apply bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden;
+  }
+  
+  .mobile-button {
+    @apply mobile-touch-target rounded-xl font-medium transition-all duration-200 active:scale-95;
+  }
+  
+  .mobile-input {
+    @apply mobile-touch-target rounded-xl border border-gray-300 px-4 py-3 text-base focus:ring-2 focus:ring-tim-green focus:border-tim-green;
+  }
+  
+  .mobile-nav-item {
+    @apply transition-all duration-200 active:scale-95 tap-highlight-none;
+  }
+  
+  .mobile-fab {
+    @apply shadow-lg transition-all duration-200 active:scale-95;
+    box-shadow: 0 4px 14px 0 rgba(34, 197, 94, 0.3);
+  }
+  
+  .mobile-fab:hover {
+    box-shadow: 0 6px 20px 0 rgba(34, 197, 94, 0.4);
+  }
+}
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(222, 84%, 4.9%);
+  --muted: hsl(210, 40%, 98%);
+  --muted-foreground: hsl(215.4, 16.3%, 46.9%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(222, 84%, 4.9%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(222, 84%, 4.9%);
+  --border: hsl(214.3, 31.8%, 91.4%);
+  --input: hsl(214.3, 31.8%, 91.4%);
+  --primary: hsl(142, 76%, 48%);
+  --primary-foreground: hsl(355, 7%, 97%);
+  --secondary: hsl(210, 40%, 98%);
+  --secondary-foreground: hsl(222, 47%, 11%);
+  --accent: hsl(210, 40%, 98%);
+  --accent-foreground: hsl(222, 47%, 11%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --ring: hsl(142, 76%, 48%);
+  --radius: 0.75rem;
+  
+  /* Tim Grow brand colors */
+  --tim-green: hsl(142, 76%, 48%);
+  --tim-navy: hsl(210, 38%, 17%);
+  --tim-amber: hsl(30, 100%, 63%);
+  --tim-gray: hsl(0, 0%, 88%);
+  --tim-charcoal: hsl(0, 0%, 20%);
+}
+
+.dark {
+  --background: hsl(222, 84%, 4.9%);
+  --foreground: hsl(210, 40%, 98%);
+  --muted: hsl(217, 32%, 17%);
+  --muted-foreground: hsl(215, 20%, 65%);
+  --popover: hsl(222, 84%, 4.9%);
+  --popover-foreground: hsl(210, 40%, 98%);
+  --card: hsl(222, 84%, 4.9%);
+  --card-foreground: hsl(210, 40%, 98%);
+  --border: hsl(217, 32%, 17%);
+  --input: hsl(217, 32%, 17%);
+  --primary: hsl(142, 76%, 48%);
+  --primary-foreground: hsl(222, 47%, 11%);
+  --secondary: hsl(217, 32%, 17%);
+  --secondary-foreground: hsl(210, 40%, 98%);
+  --accent: hsl(217, 32%, 17%);
+  --accent-foreground: hsl(210, 40%, 98%);
+  --destructive: hsl(0, 63%, 31%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --ring: hsl(142, 76%, 48%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-inter antialiased bg-background text-foreground;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-poppins;
+  }
+}
+
+/* Tim Grow specific styles */
+.tim-green {
+  color: hsl(142, 76%, 48%);
+}
+
+.bg-tim-green {
+  background-color: hsl(142, 76%, 48%);
+}
+
+.tim-navy {
+  color: hsl(210, 38%, 17%);
+}
+
+.bg-tim-navy {
+  background-color: hsl(210, 38%, 17%);
+}
+
+.tim-amber {
+  color: hsl(30, 100%, 63%);
+}
+
+.bg-tim-amber {
+  background-color: hsl(30, 100%, 63%);
+}
+
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Custom animations and effects */
+.service-option:hover {
+  border-color: hsl(142, 76%, 48%);
+  background-color: hsl(142, 76%, 96%);
+}
+
+.service-option.selected {
+  border-color: hsl(142, 76%, 48%);
+  background-color: hsl(142, 76%, 96%);
+}
+
+/* Mobile-first responsive styles */
+@media (max-width: 768px) {
+  .mobile-nav-padding {
+    padding-bottom: 80px;
+  }
+  
+  /* Mobile touch optimization */
+  button, .clickable {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Optimize scrolling on mobile */
+  .mobile-scroll {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  
+  /* Mobile-friendly padding */
+  .mobile-padding {
+    padding: 0.75rem;
+  }
+  
+  /* Touch-friendly spacing */
+  .mobile-spacing > * + * {
+    margin-top: 0.75rem;
+  }
+  
+  /* Mobile card styling */
+  .mobile-card {
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Mobile form inputs */
+  input, textarea, select {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 0.75rem;
+  }
+  
+  /* Mobile-optimized grid */
+  .mobile-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  /* Mobile header */
+  .mobile-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Mobile bottom safe area */
+  .mobile-safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  /* Mobile navigation active state */
+  .mobile-nav-active {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  }
+  
+  /* Mobile swipe animations */
+  .mobile-swipe-card {
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+  }
+  
+  .mobile-swipe-card:active {
+    transform: translateX(-5px);
+  }
+  
+  /* Mobile-specific FAB styles */
+  .mobile-fab {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .mobile-fab:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+  }
+
+  .mobile-fab:active {
+    transform: translateY(0);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .tap-highlight-none {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
