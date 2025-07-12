@@ -1,0 +1,43 @@
+workflows:
+  android-workflow:
+    name: Android Workflow
+    instance_type: mac_mini_m1
+    max_build_duration: 60
+    environment:
+      java: 17
+      node: 20
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: 'main'
+          include: true
+          source: true
+    scripts:
+      - name: Install dependencies
+        script: |
+          npm ci
+      - name: Build web app
+        script: |
+          npm run build
+      - name: Copy web assets to Android
+        script: |
+          mkdir -p android/app/src/main/assets/public
+          cp -r dist/public/* android/app/src/main/assets/public/
+      - name: Set up local properties
+        script: |
+          echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/android/local.properties"
+      - name: Build Android APK
+        script: |
+          cd android
+          chmod +x gradlew
+          ./gradlew clean assembleDebug --stacktrace
+    artifacts:
+      - android/app/build/outputs/**/*.apk
+    publishing:
+      email:
+        recipients:
+          - info@timgrow.com
+        notify:
+          success: true
+          failure: false
