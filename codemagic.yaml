@@ -20,19 +20,17 @@ workflows:
       - name: Build web app
         script: |
           npm run build
-      - name: Initialize Capacitor
+      - name: Copy web assets to Android
         script: |
-          npx cap add android
-      - name: Sync Capacitor
-        script: |
-          npx cap sync android
+          cp -r dist/public/* android/app/src/main/assets/public/
       - name: Set up local properties
         script: |
           echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/android/local.properties"
       - name: Build Android APK
         script: |
           cd android
-          ./gradlew assembleDebug
+          chmod +x gradlew
+          ./gradlew clean assembleDebug --stacktrace
     artifacts:
       - android/app/build/outputs/**/*.apk
     publishing:
